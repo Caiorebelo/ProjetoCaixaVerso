@@ -292,3 +292,4 @@ C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso\obj\Debug\net9.0\staticwebasse
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso\obj\Debug\net9.0\CaixaVerso.csproj.Up2Date
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso\obj\Debug\net9.0\CaixaVerso.genruntimeconfig.cache
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso\obj\Debug\net9.0\ref\CaixaVerso.dll
+C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso\obj\Debug\net9.0\CaixaVerso.sourcelink.json
