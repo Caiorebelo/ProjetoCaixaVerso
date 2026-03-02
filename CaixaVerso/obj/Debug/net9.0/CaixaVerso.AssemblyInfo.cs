@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CaixaVerso")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0e961e2a94ed94e4f472d0628806fa940df96c0")]
 [assembly: System.Reflection.AssemblyProductAttribute("CaixaVerso")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CaixaVerso")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
