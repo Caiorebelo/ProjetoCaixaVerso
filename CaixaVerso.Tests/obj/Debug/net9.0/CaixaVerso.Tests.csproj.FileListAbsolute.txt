@@ -295,3 +295,4 @@ C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\obj\Debug\net9.0\refint\
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\obj\Debug\net9.0\CaixaVerso.Tests.pdb
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\obj\Debug\net9.0\CaixaVerso.Tests.genruntimeconfig.cache
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\obj\Debug\net9.0\ref\CaixaVerso.Tests.dll
+C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\obj\Debug\net9.0\CaixaVerso.Tests.sourcelink.json

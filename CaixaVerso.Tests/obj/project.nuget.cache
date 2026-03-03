@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Lk8Mv4eI0k4=",
+  "dgSpecHash": "FYmE5zu+idA=",
   "success": true,
   "projectFilePath": "C:\\Users\\Caio Rebelo\\ProjetoCaixaVerso\\CaixaVerso.Tests\\CaixaVerso.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Caio Rebelo\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
-    "C:\\Users\\Caio Rebelo\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
+    "C:\\Users\\Caio Rebelo\\.nuget\\packages\\coverlet.collector\\8.0.0\\coverlet.collector.8.0.0.nupkg.sha512",
     "C:\\Users\\Caio Rebelo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.7\\microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",
     "C:\\Users\\Caio Rebelo\\.nuget\\packages\\microsoft.codecoverage\\17.12.0\\microsoft.codecoverage.17.12.0.nupkg.sha512",
     "C:\\Users\\Caio Rebelo\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.0\\microsoft.data.sqlite.core.9.0.0.nupkg.sha512",
