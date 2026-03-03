@@ -39,7 +39,7 @@ public class CriarSimulacaoUseCaseTests
         var resultado = await useCase.Executar(request);
 
         // Assert
-        Assert.True(resultado.ValorFinal > 1000);
+        Assert.Equal(1126.83m, resultado.ValorFinal, 2);
 
     }
 
