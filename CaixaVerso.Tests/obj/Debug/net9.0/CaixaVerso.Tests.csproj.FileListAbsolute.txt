@@ -592,7 +592,6 @@ C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\bin\Debug\net9.0\runtime
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\bin\Debug\net9.0\CaixaVerso.dll
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\bin\Debug\net9.0\CaixaVerso.pdb
-C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\bin\Debug\net9.0\CaixaVerso.xml
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\obj\Debug\net9.0\CaixaVerso.Tests.csproj.AssemblyReference.cache
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\obj\Debug\net9.0\MvcTestingAppManifest.json
 C:\Users\Caio Rebelo\ProjetoCaixaVerso\CaixaVerso.Tests\obj\Debug\net9.0\CaixaVerso.Tests.GeneratedMSBuildEditorConfig.editorconfig

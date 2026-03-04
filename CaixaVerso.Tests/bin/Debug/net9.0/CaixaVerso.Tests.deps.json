@@ -1362,6 +1362,7 @@
           "Microsoft.EntityFrameworkCore": "9.0.0",
           "Microsoft.EntityFrameworkCore.InMemory": "9.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "9.0.0",
+          "Microsoft.OpenApi": "2.4.1",
           "Swashbuckle.AspNetCore": "10.1.4",
           "Swashbuckle.AspNetCore.Filters": "10.0.1"
         },

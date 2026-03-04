@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CaixaVerso.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62fde34586e7eb1685b7f7c977e7c3264fe28eb1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81d53be9f0055e55cf927b81786eba5985233128")]
 [assembly: System.Reflection.AssemblyProductAttribute("CaixaVerso.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CaixaVerso.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
