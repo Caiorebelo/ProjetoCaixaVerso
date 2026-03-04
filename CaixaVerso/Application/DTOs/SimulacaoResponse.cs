@@ -1,7 +1,7 @@
-namespace CaixaVerso.Application.DTOs;
-
 public class SimulacaoResponse
 {
+    public int Id { get; set; }
+    public int ClienteId { get; set; }
     public string Produto { get; set; } = string.Empty;
     public decimal ValorInvestido { get; set; }
     public decimal ValorFinal { get; set; }

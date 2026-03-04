@@ -21,36 +21,26 @@ public class CriarSimulacaoUseCase
         _calculadora = calculadora;
     }
 
-    public async Task<SimulacaoResultadoResponse> Executar(CriarSimulacaoRequest request)
+    public async Task<CriarSimulacaoResponse?> Executar(CriarSimulacaoRequest request)
     {
-        // Validações
-        if (request.Valor <= 0)
-            throw new ArgumentException("Valor investido deve ser maior que zero.");
+        // Validações básicas
+        if (request.ClienteId <= 0 || request.Valor <= 0 || request.PrazoMeses <= 0 || string.IsNullOrEmpty(request.TipoProduto))
+            return null; // Controller retorna 400
 
-        if (request.PrazoMeses <= 0)
-            throw new ArgumentException("Prazo deve ser maior que zero.");
-
-        // Buscar produto
+        // Buscar produto elegível
         var produto = await _produtoRepository.ObterPorTipo(request.TipoProduto);
 
         if (produto == null)
-            throw new ArgumentException("Produto não encontrado.");
+            return null; // Controller retorna 422
 
-        // Calculo
-        var valorCalculado = _calculadora.Calcular(
-            request.Valor,
-            produto.Rentabilidade,
-            request.PrazoMeses
-        );
-
-        // Arredondamento
+        // Calcular valor final
         var valorFinal = Math.Round(
-            valorCalculado,
+            _calculadora.Calcular(request.Valor, produto.Rentabilidade, request.PrazoMeses),
             2,
             MidpointRounding.AwayFromZero
         );
 
-        // Criar entidade
+        // Criar entidade de simulação
         var simulacao = new Simulacao(
             request.ClienteId,
             request.Valor,
@@ -59,14 +49,25 @@ public class CriarSimulacaoUseCase
             produto.Nome
         );
 
-        // Persistir
         await _simulacaoRepository.Adicionar(simulacao);
 
-        // Retornar DTO
-        return new SimulacaoResultadoResponse
+        // Retornar DTO no formato exigido
+        return new CriarSimulacaoResponse
         {
-            Produto = produto.Nome,
-            ValorFinal = valorFinal
+            ProdutoValidado = new ProdutoResponse
+            {
+                Id = produto.Id,
+                Nome = produto.Nome,
+                TipoProduto = produto.Tipo,
+                Rentabilidade = produto.Rentabilidade,
+                Risco = produto.Risco
+            },
+            ResultadoSimulacao = new ResultadoSimulacao
+            {
+                ValorFinal = valorFinal,
+                PrazoMeses = request.PrazoMeses
+            },
+            DataSimulacao = DateTime.UtcNow
         };
     }
 }
