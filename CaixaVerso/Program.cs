@@ -5,11 +5,12 @@ using CaixaVerso.Domain.Interfaces;
 using CaixaVerso.Domain.Services;
 using CaixaVerso.Application.UseCases;
 using System.Reflection;
-using Swashbuckle.AspNetCore.Filters;
+using Microsoft.OpenApi.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- 1. Configurar Banco de Dados ---
+// Configurar banco de dados
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     if (builder.Environment.IsEnvironment("Testing"))
@@ -18,63 +19,61 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     }
     else
     {
-        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+        options.UseSqlite(
+            builder.Configuration.GetConnectionString("DefaultConnection"));
     }
 });
 
-// --- 2. Registrar Dependências ---
+// Registrar Repositórios
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<ISimulacaoRepository, SimulacaoRepository>();
+
+// Registrar Serviço de Cálculo
 builder.Services.AddScoped<ICalculadoraInvestimento, CalculadoraInvestimento>();
+
+// Registrar UseCases
 builder.Services.AddScoped<CriarSimulacaoUseCase>();
 builder.Services.AddScoped<ListarSimulacoesUseCase>();
 builder.Services.AddScoped<ObterSimulacaoPorIdUseCase>();
 
 builder.Services.AddControllers();
 
-// --- 3. Swagger Config ---
+// ✅ Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    // ✅ O segredo: 'new()' injeta o tipo correto sem você escrever 
-    // "Microsoft.OpenApi.Models", evitando o erro CS0234
-    options.SwaggerDoc("v1", new() 
-    { 
-        Title = "CaixaVerso API", 
-        Version = "v1",
-        Description = "API de Simulação de Investimentos"
-    });
-
-    options.ExampleFilters();
-
-    // Comentários XML
+    // Inclui comentários XML para enriquecer a documentação
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     if (File.Exists(xmlPath))
+    {
         options.IncludeXmlComments(xmlPath);
-});
+    }
 
-builder.Services.AddSwaggerExamplesFromAssemblyOf<Program>();
+    // Configuração básica de título/versão
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "CaixaVerso API",
+        Version = "v1",
+        Description = "API para simulações de investimentos (CaixaVerso)."
+    });
+});
 
 var app = builder.Build();
 
-// --- 4. Pipeline de Requisição (Middleware) ---
-
-// ✅ O Swagger DEVE vir antes de quase tudo
+// ✅ Swagger UI habilitado em ambiente de desenvolvimento
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger(); // ✅ Tente deixar o padrão primeiro
+    app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        // ✅ Teste este caminho relativo, que é o mais compatível:
-        c.SwaggerEndpoint("swagger/v1/swagger.json", "CaixaVerso API v1");
-        c.RoutePrefix = string.Empty; 
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "CaixaVerso API v1");
+        c.RoutePrefix = string.Empty; // abre direto em https://localhost:5001/
     });
 }
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
