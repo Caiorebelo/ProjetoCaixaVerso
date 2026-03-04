@@ -31,48 +31,50 @@ public class SimulacoesEndpointTests
 
         response.EnsureSuccessStatusCode();
 
+        // ✅ Agora usamos CriarSimulacaoResponse
         var result = await response.Content
-                                   .ReadFromJsonAsync<SimulacaoResultadoResponse>();
+                                   .ReadFromJsonAsync<CriarSimulacaoResponse>();
 
         Assert.NotNull(result);
-        Assert.True(result!.ValorFinal > 0);
+        Assert.True(result!.ResultadoSimulacao.ValorFinal > 0);
+        Assert.Equal(12, result.ResultadoSimulacao.PrazoMeses);
     }
 
-
-[Fact]
-public async Task GET_Simulacoes_Por_Id_Deve_Retornar_200()
-{
-    // Arrange - cria a simulação primeiro
-    var request = new CriarSimulacaoRequest
+    [Fact]
+    public async Task GET_Simulacoes_Por_Id_Deve_Retornar_200()
     {
-        ClienteId = 1,
-        Valor = 1000,
-        PrazoMeses = 12,
-        TipoProduto = "CDB"
-    };
+        // Arrange - cria a simulação primeiro
+        var request = new CriarSimulacaoRequest
+        {
+            ClienteId = 1,
+            Valor = 1000,
+            PrazoMeses = 12,
+            TipoProduto = "CDB"
+        };
 
-    var postResponse = await _client
-        .PostAsJsonAsync("/api/simulacoes", request);
+        var postResponse = await _client
+            .PostAsJsonAsync("/api/simulacoes", request);
 
-    postResponse.EnsureSuccessStatusCode();
+        postResponse.EnsureSuccessStatusCode();
 
-    var resultado = await postResponse.Content
-        .ReadFromJsonAsync<SimulacaoResultadoResponse>();
+        var resultado = await postResponse.Content
+            .ReadFromJsonAsync<CriarSimulacaoResponse>();
 
-    Assert.NotNull(resultado);
-    Assert.True(resultado!.Id > 0); // 🔎 valida se Id foi gerado
+        Assert.NotNull(resultado);
+        Assert.True(resultado!.ResultadoSimulacao.ValorFinal > 0);
 
-    // Act - busca pelo Id
-    var getResponse = await _client
-        .GetAsync($"/api/simulacoes/{resultado.Id}");
+        // Act - busca pelo Id
+        var getResponse = await _client
+            .GetAsync($"/api/simulacoes/{resultado.ProdutoValidado.Id}");
 
-    // Assert
-    getResponse.EnsureSuccessStatusCode();
+        getResponse.EnsureSuccessStatusCode();
 
-    var simulacao = await getResponse.Content
-        .ReadFromJsonAsync<SimulacaoResultadoResponse>();
+        // ✅ GET retorna SimulacaoResponse
+        var simulacao = await getResponse.Content
+            .ReadFromJsonAsync<SimulacaoResponse>();
 
-    Assert.NotNull(simulacao);
-    Assert.Equal(resultado.Id, simulacao!.Id);
-}
+        Assert.NotNull(simulacao);
+        Assert.Equal(resultado.ResultadoSimulacao.ValorFinal, simulacao!.ValorFinal);
+        Assert.Equal(resultado.ResultadoSimulacao.PrazoMeses, simulacao.PrazoMeses);
+    }
 }

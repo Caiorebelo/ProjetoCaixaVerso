@@ -39,12 +39,13 @@ public class CriarSimulacaoUseCaseTests
         var resultado = await useCase.Executar(request);
 
         // Assert
-        Assert.Equal(1126.83m, resultado.ValorFinal, 2);
-
+        Assert.NotNull(resultado);
+        Assert.Equal(1126.83m, resultado.ResultadoSimulacao.ValorFinal, 2);
+        Assert.Equal(12, resultado.ResultadoSimulacao.PrazoMeses);
     }
 
     [Fact]
-    public async Task Deve_Lancar_Excecao_Quando_Produto_Nao_Encontrado()
+    public async Task Deve_Retornar_Null_Quando_Produto_Nao_Encontrado()
     {
         var produtoRepoMock = new Mock<IProdutoRepository>();
         produtoRepoMock.Setup(x => x.ObterPorTipo("CDB"))
@@ -67,8 +68,8 @@ public class CriarSimulacaoUseCaseTests
             TipoProduto = "CDB"
         };
 
-        await Assert.ThrowsAsync<ArgumentException>(
-            () => useCase.Executar(request)
-        );
+        var resultado = await useCase.Executar(request);
+
+        Assert.Null(resultado);
     }
 }
