@@ -5,7 +5,7 @@ using CaixaVerso.Domain.Interfaces;
 using CaixaVerso.Domain.Services;
 using CaixaVerso.Application.UseCases;
 using System.Reflection;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,7 +51,7 @@ builder.Services.AddSwaggerGen(options =>
     }
 
     // Configuração básica de título/versão
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    options.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "CaixaVerso API",
         Version = "v1",
